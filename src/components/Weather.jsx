@@ -13,10 +13,12 @@ const Weather = () => {
   const handleLocation = (e) => {
     setLocationValue(e.target.value);
   };
-  // const url = `https://api.openweathermap.org/data/2.5/weather?q=${locationValue}&units=metric&appid=267564316bb041c3679d55e5de9a1f0f`;
+
+  const apikey=process.env.REACT_APP_API_KEY;
+ 
   const getWeatherDetails = (e) => {
     if (e.key === "Enter" || e.type === "click") {
-      getWeatherDetailsApi(locationValue)
+      getWeatherDetailsApi(locationValue,apikey )
         .then((response) => {
           console.log("Weather Details", response.data);
           let dateTime = new Date(response.data.dt * 1000 + (response.data.timezone * 1000));
